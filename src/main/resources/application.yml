@@ -1,0 +1,79 @@
+micronaut:
+  application:
+    name: app-customers-micronaut
+  discovery:
+    client:
+      consul:
+        host: ${CONSUL_HOST:localhost}
+        port: ${CONSUL_PORT:8500}
+        registration:
+          enabled: true
+          deregister: true
+          deregister-critical-service-after: 5s
+          instance-id: ${micronaut.application.name}:${random.port}
+          check:
+            enabled: true
+
+datasources:
+  default:
+    db-type: postgres
+    dialect: POSTGRES
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost:5432/distribuida
+    driver-class-name: org.postgresql.Driver
+
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+
+endpoints:
+  all:
+    enabled: false
+  health:
+    enabled: true
+    sensitive: false
+  metrics:
+    enabled: true
+    sensitive: false
+
+consul:
+  client:
+    registration:
+      enabled: true
+    defaultZone: "${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}"
+
+## Dekorate para generar manifiestos
+#dekorate:
+#  kubernetes:
+#    enabled: true
+#    replicas: 2
+#    ports:
+#      - name: http
+#        containerPort: 8080
+#
+#    # Importante: Service type ClusterIP (Traefik se encargará del ingress)
+#    service-type: ClusterIP
+#
+#    # Labels para que Traefik encuentre el servicio
+#    labels:
+#      - key: traefik.enable
+#        value: "true"
+#      - key: traefik.http.routers.mi-servicio.rule
+#        value: "PathPrefix(`/mi-servicio`)"
+#
+#    # Health checks
+#    liveness-probe:
+#      http-action-path: /health/liveness
+#      initial-delay-seconds: 30
+#    readiness-probe:
+#      http-action-path: /health/readiness
+#      initial-delay-seconds: 10
+dekorate:
+  kubernetes:
+    enabled: true
+    # Fuerza la generación
+    deploy: false

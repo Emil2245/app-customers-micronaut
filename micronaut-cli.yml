@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.programacion.distribuida
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle_kotlin
+features: [app-name, consul, data, data-jpa, discovery-client, discovery-consul, gradle, hibernate-jpa, http-client, http-client-test, java, java-application, jdbc-hikari, jib, junit, logback, lombok, management, micronaut-aot, micronaut-build, micronaut-http-validation, netty-server, postgres, properties, readme, serialization-jackson, shade, static-resources, test-resources, validation]
