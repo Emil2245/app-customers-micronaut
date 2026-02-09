@@ -44,6 +44,9 @@ dependencies {
 
     implementation("io.micronaut.discovery:micronaut-discovery-client")
 
+    implementation("io.micronaut.micrometer:micronaut-micrometer-core")
+    implementation("io.micronaut.micrometer:micronaut-micrometer-registry-prometheus")
+
     runtimeOnly("org.yaml:snakeyaml")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
