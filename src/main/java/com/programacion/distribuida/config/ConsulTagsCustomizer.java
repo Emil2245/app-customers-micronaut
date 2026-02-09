@@ -17,9 +17,9 @@ public class ConsulTagsCustomizer implements BeanCreatedEventListener<ConsulConf
 
         List<String> traefikTags = new ArrayList<>();
         traefikTags.add("traefik.enable=true");
-        traefikTags.add("traefik.http.routers.customers.rule=PathPrefix(`/app-customers-micronaut`)");
+        traefikTags.add("traefik.http.routers.customers.rule=PathPrefix(`/app-customers`)");
         traefikTags.add("traefik.http.routers.customers.priority=10");
-        traefikTags.add("traefik.http.middlewares.customers-stripprefix.stripPrefix.prefixes=/app-customers-micronaut");
+        traefikTags.add("traefik.http.middlewares.customers-stripprefix.stripPrefix.prefixes=/app-customers");
         traefikTags.add("traefik.http.routers.customers.middlewares=customers-stripprefix");
 
         config.getRegistration().setTags(traefikTags);

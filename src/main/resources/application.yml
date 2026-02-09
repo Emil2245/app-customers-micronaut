@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: app-customers-micronaut
+    name: app-customers
   discovery:
     client:
       consul:
@@ -18,17 +18,27 @@ datasources:
   default:
     db-type: postgres
     dialect: POSTGRES
-    username: postgres
-    password: root
-    url: jdbc:postgresql://localhost:5432/distribuida
+    username: ${DATASOURCES_DEFAULT_USERNAME:postgres}
+    password: ${DATASOURCES_DEFAULT_PASSWORD:root}
+    url: ${DATASOURCES_DEFAULT_URL:jdbc:postgresql://localhost:5432/distribuida}
     driver-class-name: org.postgresql.Driver
+
+# Flyway configuration - migrations run automatically on startup
+flyway:
+  datasources:
+    default:
+      enabled: true
+      locations:
+        - classpath:db/migration
+      baseline-on-migrate: true
+      clean-disabled: true
 
 jpa:
   default:
     properties:
       hibernate:
         hbm2ddl:
-          auto: update
+          auto: validate
 
 endpoints:
   all:

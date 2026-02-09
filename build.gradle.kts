@@ -24,6 +24,10 @@ dependencies {
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     runtimeOnly("org.postgresql:postgresql")
 
+    // Flyway for database migrations
+    implementation("io.micronaut.flyway:micronaut-flyway")
+    runtimeOnly("org.flywaydb:flyway-database-postgresql")
+
 
     annotationProcessor("io.micronaut:micronaut-http-validation")
     implementation("io.micronaut:micronaut-http-client")
