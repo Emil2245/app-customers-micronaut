@@ -13,6 +13,13 @@ micronaut:
           instance-id: ${micronaut.application.name}:${random.port}
           check:
             enabled: true
+  metrics:
+    enabled: true
+    export:
+      prometheus:
+        enabled: true
+        step: PT1M
+        descriptions: true
 
 datasources:
   default:
@@ -47,6 +54,9 @@ endpoints:
     enabled: true
     sensitive: false
   metrics:
+    enabled: true
+    sensitive: false
+  prometheus:
     enabled: true
     sensitive: false
 
